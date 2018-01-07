@@ -1,0 +1,121 @@
+#variables
+set $mod Mod4
+set_from_resource $fg i3wm.color5 #f0f0f0
+set_from_resource $bg i3wm.color4 #f0f0f0
+set_from_resource $df i3wm.color0 #f0f0f0
+
+# open programs
+bindsym $mod+Return exec terminator
+bindsym $mod+d exec dmenu_run
+bindsym $mod+b exec firefox
+bindsym 0xff61 exec --no-startup-id gscreenshot
+#bindsym $mod+m exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1
+
+# system actions
+bindsym $mod+Shift+q kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+BackSpace exec shutdown now
+bindsym $mod+BackSpace exec reboot
+bindsym $mod+shift+l exec ~/.i3/i3lock-fancy-multimonitor/lock -n
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# volume and backlight
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle 
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
+# container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# borders
+hide_edge_borders both
+for_window [class="^.*"] border pixel 0
+gaps inner 10
+gaps outer 10
+
+floating_modifier $mod
+font pango:monospace 8, Awesome 8
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split windows
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# class                 border  backgr. text     indicator child_border
+client.focused          $bg     $bg     #000000  $bg       $bg
+client.focused_inactive $fg     $fg     #000000  $bg       $bg
+client.unfocused        $fg     $fg     #000000  $bg       $bg
+client.urgent           $bg     $bg     #000000  $bg       $bg
+client.placeholder      $bg     $bg     #000000  $bg       $bg
+
+bar {
+        status_command i3status
+	font pango:Noto Sans Display, Awesome 8
+	colors {
+		background #32373b
+		separator #757575 
+		focused_workspace   #32373b #32373b #f3f4f5
+		inactive_workspace  #32373b #32373b #676e7d
+		urgent_workspace    #e53935 #e53935 #f3f4f5
+	}
+}
+
+# system startup
+exec --no-startup-id nm-applet
+exec --no-startup-id pa-applet
+exec --no-startup-id feh --bg-scale ~/Pictures/lake.jpg
+exec --no-startup-id xcompmgr -c 
+
