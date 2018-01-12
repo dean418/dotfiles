@@ -8,6 +8,9 @@ set_from_resource $df i3wm.color0 #f0f0f0
 bindsym $mod+Return exec terminator
 bindsym $mod+d exec dmenu_run
 bindsym $mod+b exec firefox
+bindsym $mod+c exec code-oss
+bindsym $mod+t exec thunar
+bindsym $mod+l exec libreoffice
 bindsym 0xff61 exec --no-startup-id gscreenshot
 #bindsym $mod+m exec --no-startup-id xrandr --output HDMI2 --auto --right-of eDP1
 
@@ -37,7 +40,7 @@ bindsym $mod+e layout toggle split
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
 gaps inner 10
-gaps outer 10
+gaps outer 5
 
 floating_modifier $mod
 font pango:monospace 8, Awesome 8
