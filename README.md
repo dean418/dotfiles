@@ -15,5 +15,6 @@
 * i3-gaps
 * pywal - git
 * neofetch
+* dunst
 
 Includes some xorg config files
