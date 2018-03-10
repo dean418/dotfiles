@@ -121,4 +121,5 @@ exec --no-startup-id nm-applet
 exec --no-startup-id pa-applet
 exec --no-startup-id feh --bg-scale ~/Pictures/lake.jpg
 exec --no-startup-id xcompmgr -c 
+exec --no-startup-id dunst -conf ~/.config/dunst/dunstrc
 
